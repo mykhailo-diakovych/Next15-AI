@@ -1,5 +1,5 @@
 export function AppHeader() {
   return (
-    <div />
+    <div>HEADER</div>
   );
 }
