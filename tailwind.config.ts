@@ -10,6 +10,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        'v-grey-200': 'hsl(var(--color-grey-200) / <alpha-value>)',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
