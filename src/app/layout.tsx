@@ -1,11 +1,11 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 
-import "./globals.css";
 import { AppHeader } from "@/components/general/header/app-header";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/general/sidebar/AppSidebar";
+
+import "@/styles/globals.css";
 
 export const metadata: Metadata = {
    title: "Voulquant",
@@ -19,9 +19,7 @@ export default function RootLayout({
 }>) {
    return (
       <html lang="en">
-         <body
-            className=""
-         >
+         <body className="">
             <SidebarProvider>
                <AppSidebar />
                <main className="w-full">
