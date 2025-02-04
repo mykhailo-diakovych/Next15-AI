@@ -32,7 +32,7 @@ export function AppHeader() {
                         alt="@shadcn"
                      />
                      <AvatarFallback className="flex size-4 items-start justify-center bg-transparent">
-                        <Icon name="user" className="flex" />
+                        <Icon name="user" className="size-4" />
                      </AvatarFallback>
                   </Avatar>
                   <div className="flex items-center gap-x-2">
