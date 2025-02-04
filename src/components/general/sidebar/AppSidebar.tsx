@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { AudioWaveform, Command, GalleryVerticalEnd } from "lucide-react";
+import Link from "next/link";
 
 import {
    Sidebar,
@@ -13,28 +13,19 @@ import {
    SidebarMenuItem,
    SidebarRail,
 } from "@/components/ui/sidebar";
-import { Switcher } from "@/components/general/sidebar/Switcher";
+import { ModelSwitcher } from "@components/general/sidebar/ModelSwitcher";
 import { Separator } from "@components/ui/separator";
 import { NewThreadButton } from "@components/general/sidebar/NewThreadButton";
 import { HeaderLogo } from "@components/general/header-logo/HeaderLogo";
 
 // This is sample data.
 const data = {
-   teams: [
+   models: [
       {
-         name: "Acme Inc",
-         logo: GalleryVerticalEnd,
-         plan: "Enterprise",
+         name: "Gen AI",
       },
       {
-         name: "Acme Corp.",
-         logo: AudioWaveform,
-         plan: "Startup",
-      },
-      {
-         name: "Evil Corp.",
-         logo: Command,
-         plan: "Free",
+         name: "Volt Ai",
       },
    ],
    navMain: [
@@ -64,21 +55,22 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
    return (
       <Sidebar collapsible="icon" {...props}>
-         <SidebarHeader>
+         <SidebarHeader className="gap-0 p-0">
             <HeaderLogo />
-            <Switcher teams={data.teams} />
+
+            <ModelSwitcher models={data.models} />
          </SidebarHeader>
 
-         <SidebarContent>
+         <SidebarContent className="gap-0 px-2 py-3">
             <NewThreadButton />
 
-            <SidebarMenu>
+            <SidebarMenu className="gap-1 py-3">
                {data.navMain[0].items.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                     <SidebarMenuButton asChild>
-                        <a href={item.url}>
+                     <SidebarMenuButton asChild size="lg">
+                        <Link href={item.url}>
                            <span>{item.title}</span>
-                        </a>
+                        </Link>
                      </SidebarMenuButton>
                   </SidebarMenuItem>
                ))}
@@ -87,22 +79,24 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
                {data.navMain[1].items.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                     <SidebarMenuButton asChild>
-                        <a href={item.url}>
+                     <SidebarMenuButton asChild size="lg">
+                        <Link href={item.url}>
                            <span>{item.title}</span>
-                        </a>
+                        </Link>
                      </SidebarMenuButton>
                   </SidebarMenuItem>
                ))}
             </SidebarMenu>
          </SidebarContent>
 
-         <Separator />
+         <div className="px-2 py-3">
+            <Separator />
+         </div>
 
-         <SidebarFooter>
+         <SidebarFooter className="gap-0 px-2 py-3">
             <SidebarMenu>
                <SidebarMenuItem key="settings">
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild size="lg">
                      <a href="#">
                         <span>Settings</span>
                      </a>

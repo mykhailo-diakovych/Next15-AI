@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { ChevronsUpDown, Plus } from "lucide-react";
 
 import {
    DropdownMenu,
@@ -19,40 +18,26 @@ import {
    SidebarTrigger,
    useSidebar,
 } from "@/components/ui/sidebar";
+import { Icon } from "@components/ui/icon";
 
-export const Switcher = ({
-   teams,
-}: {
-   teams: {
-      name: string;
-      logo: React.ElementType;
-      plan: string;
-   }[];
-}) => {
+export const ModelSwitcher = ({ models }: { models: { name: string }[] }) => {
    const { isMobile } = useSidebar();
-   const [activeTeam, setActiveTeam] = React.useState(teams[0]);
+   const [activeModel, setActiveModel] = React.useState(models[0]);
 
    return (
       <SidebarMenu>
-         <SidebarMenuItem>
+         <SidebarMenuItem className="flex h-14 items-center justify-between border-b border-gray-200 p-2">
             <DropdownMenu>
                <DropdownMenuTrigger asChild>
-                  <div className="flex">
+                  <div className="flex w-40">
                      <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                        <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                           <activeTeam.logo className="size-4" />
-                        </div>
                         <div className="grid flex-1 text-left text-sm leading-tight">
-                           <span className="truncate font-semibold">
-                              {activeTeam.name}
-                           </span>
-                           <span className="truncate text-xs">
-                              {activeTeam.plan}
+                           <span className="text-left text-sm font-normal leading-5 tracking-[-0.02em]">
+                              {activeModel.name}
                            </span>
                         </div>
-                        <ChevronsUpDown className="ml-auto" />
+                        <Icon name="chevrons-up-down" className="h-6 w-6" />
                      </SidebarMenuButton>
-                     <SidebarTrigger />
                   </div>
                </DropdownMenuTrigger>
                <DropdownMenuContent
@@ -62,34 +47,25 @@ export const Switcher = ({
                   sideOffset={4}
                >
                   <DropdownMenuLabel className="text-xs text-muted-foreground">
-                     Teams
+                     Models
                   </DropdownMenuLabel>
-                  {teams.map((team, index) => (
+                  {models.map((model, index) => (
                      <DropdownMenuItem
-                        key={team.name}
-                        onClick={() => setActiveTeam(team)}
+                        key={model.name}
+                        onClick={() => setActiveModel(model)}
                         className="gap-2 p-2"
                      >
-                        <div className="flex size-6 items-center justify-center rounded-sm border">
-                           <team.logo className="size-4 shrink-0" />
-                        </div>
-                        {team.name}
+                        {model.name}
                         <DropdownMenuShortcut>
                            ⌘{index + 1}
                         </DropdownMenuShortcut>
                      </DropdownMenuItem>
                   ))}
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem className="gap-2 p-2">
-                     <div className="flex size-6 items-center justify-center rounded-md border bg-background">
-                        <Plus className="size-4" />
-                     </div>
-                     <div className="font-medium text-muted-foreground">
-                        Add team
-                     </div>
-                  </DropdownMenuItem>
                </DropdownMenuContent>
             </DropdownMenu>
+
+            <SidebarTrigger />
          </SidebarMenuItem>
       </SidebarMenu>
    );
