@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@/components/ui/button";
 import { Icon } from "@/components/shared/icon";
 import {
@@ -8,8 +9,10 @@ import {
    DropdownMenuSeparator,
    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Link from 'next/link'
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
 
 export function AppHeader() {
    return (
@@ -29,7 +32,7 @@ export function AppHeader() {
                         alt="@shadcn"
                      />
                      <AvatarFallback className="flex size-4 items-start justify-center bg-transparent">
-                        <Icon name="user" className="size-4" />
+                        <Icon name="user" className="flex" />
                      </AvatarFallback>
                   </Avatar>
                   <div className="flex items-center gap-x-2">
@@ -40,10 +43,18 @@ export function AppHeader() {
                <DropdownMenuContent>
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
-                  <DropdownMenuItem>Billing</DropdownMenuItem>
-                  <DropdownMenuItem>Team</DropdownMenuItem>
-                  <DropdownMenuItem>Subscription</DropdownMenuItem>
+                  <DropdownMenuItem>
+                     <Link href="/">Profile</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                     <Link href="/">Billing</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                     <Link href="/">Team</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                     <Link href="/">Subscription</Link>
+                  </DropdownMenuItem>
                </DropdownMenuContent>
             </DropdownMenu>
          </div>
