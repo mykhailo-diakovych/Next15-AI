@@ -1,7 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 
-import { AppHeader } from "@/components/general/header/app-header";
+import { AppHeader } from "@/components/general/header/AppHeader";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/general/sidebar/AppSidebar";
 
