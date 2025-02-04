@@ -17,6 +17,7 @@ import { ModelSwitcher } from "@components/general/sidebar/ModelSwitcher";
 import { Separator } from "@components/ui/separator";
 import { NewThreadButton } from "@components/general/sidebar/NewThreadButton";
 import { HeaderLogo } from "@components/general/header-logo/HeaderLogo";
+import { Icon } from "@components/shared/icon";
 
 // This is sample data.
 const data = {
@@ -32,11 +33,13 @@ const data = {
       {
          items: [
             {
-               title: "History",
+               title: "Home",
+               icon: "home",
                url: "#",
             },
             {
-               title: "Starred",
+               title: "Projects",
+               icon: "projects",
                url: "#",
             },
          ],
@@ -45,6 +48,7 @@ const data = {
          items: [
             {
                title: "Threads",
+               icon: "threads",
                url: "#",
             },
          ],
@@ -69,6 +73,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <SidebarMenuItem key={item.title}>
                      <SidebarMenuButton asChild size="lg">
                         <Link href={item.url}>
+                           <Icon name={item.icon} />
                            <span>{item.title}</span>
                         </Link>
                      </SidebarMenuButton>
@@ -97,9 +102,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenu>
                <SidebarMenuItem key="settings">
                   <SidebarMenuButton asChild size="lg">
-                     <a href="#">
+                     <Link href="#">
+                        <Icon name="settings" />
                         <span>Settings</span>
-                     </a>
+                     </Link>
                   </SidebarMenuButton>
                </SidebarMenuItem>
             </SidebarMenu>
