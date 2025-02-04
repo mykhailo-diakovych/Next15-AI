@@ -18,7 +18,7 @@ import {
    SidebarTrigger,
    useSidebar,
 } from "@/components/ui/sidebar";
-import { Icon } from "@components/ui/icon";
+import { Icon } from "@/components/shared/icon";
 
 export const ModelSwitcher = ({ models }: { models: { name: string }[] }) => {
    const { isMobile } = useSidebar();
