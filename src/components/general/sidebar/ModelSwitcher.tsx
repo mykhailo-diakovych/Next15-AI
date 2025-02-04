@@ -19,9 +19,10 @@ import {
    useSidebar,
 } from "@/components/ui/sidebar";
 import { Icon } from "@/components/shared/icon";
+import { cn } from "@utils/tailwindMerge";
 
 export const ModelSwitcher = ({ models }: { models: { name: string }[] }) => {
-   const { isMobile } = useSidebar();
+   const { isMobile, open } = useSidebar();
    const [activeModel, setActiveModel] = React.useState(models[0]);
 
    return (
@@ -29,7 +30,11 @@ export const ModelSwitcher = ({ models }: { models: { name: string }[] }) => {
          <SidebarMenuItem className="flex h-14 items-center justify-between border-b border-gray-200 p-2">
             <DropdownMenu>
                <DropdownMenuTrigger asChild>
-                  <div className="flex w-40">
+                  <div
+                     className={cn("flex w-40", {
+                        hidden: !open,
+                     })}
+                  >
                      <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
                         <div className="grid flex-1 text-left text-sm leading-tight">
                            <span className="text-left text-sm font-normal leading-5 tracking-[-0.02em]">

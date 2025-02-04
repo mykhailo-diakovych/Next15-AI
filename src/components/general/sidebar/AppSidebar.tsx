@@ -12,12 +12,14 @@ import {
    SidebarMenuButton,
    SidebarMenuItem,
    SidebarRail,
+   useSidebar,
 } from "@/components/ui/sidebar";
 import { ModelSwitcher } from "@components/general/sidebar/ModelSwitcher";
 import { Separator } from "@components/ui/separator";
 import { NewThreadButton } from "@components/general/sidebar/NewThreadButton";
 import { Icon } from "@components/shared/icon";
 import { Logo } from "@components/general/logo/HeaderLogo";
+import { cn } from "@utils/tailwindMerge";
 
 // This is sample data.
 const data = {
@@ -57,6 +59,8 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+   const { open } = useSidebar();
+
    return (
       <Sidebar collapsible="icon" {...props}>
          <SidebarHeader className="gap-0 p-0">
@@ -71,10 +75,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenu className="gap-1 py-3">
                {data.navMain[0].items.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                     <SidebarMenuButton asChild size="lg">
+                     <SidebarMenuButton
+                        asChild
+                        size="lg"
+                        className={cn({
+                           "justify-center": !open,
+                        })}
+                     >
                         <Link href={item.url}>
                            <Icon name={item.icon} />
-                           <span>{item.title}</span>
+                           <span
+                              className={cn({
+                                 hidden: !open,
+                              })}
+                           >
+                              {item.title}
+                           </span>
                         </Link>
                      </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -84,10 +100,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
                {data.navMain[1].items.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                     <SidebarMenuButton asChild size="lg">
+                     <SidebarMenuButton
+                        asChild
+                        size="lg"
+                        className={cn({
+                           "justify-center": !open,
+                        })}
+                     >
                         <Link href={item.url}>
                            <Icon name={item.icon} />
-                           <span>{item.title}</span>
+                           <span
+                              className={cn({
+                                 hidden: !open,
+                              })}
+                           >
+                              {item.title}
+                           </span>
                         </Link>
                      </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -102,10 +130,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
          <SidebarFooter className="gap-0 px-2 py-3">
             <SidebarMenu>
                <SidebarMenuItem key="settings">
-                  <SidebarMenuButton asChild size="lg">
+                  <SidebarMenuButton
+                     asChild
+                     size="lg"
+                     className={cn({
+                        "justify-center": !open,
+                     })}
+                  >
                      <Link href="#">
                         <Icon name="settings" />
-                        <span>Settings</span>
+                        <span
+                           className={cn({
+                              hidden: !open,
+                           })}
+                        >
+                           Settings
+                        </span>
                      </Link>
                   </SidebarMenuButton>
                </SidebarMenuItem>
