@@ -61,7 +61,7 @@ To manage SVG icons and generate a sprite file, follow these steps:
    After adding the icons, run the following command to generate the `sprite.svg` file:
 
    ```bash
-   npx tsx src/utils/build-icons.ts
+   npx tsx src/utils/buildIcons.ts
    ```
 
 3. **Using Icons in Components**:
@@ -77,7 +77,7 @@ To manage SVG icons and generate a sprite file, follow these steps:
    It's recommended to run the sprite generator as a watcher so that the sprite is updated whenever an SVG file is added or modified. Use the following command to start the watcher:
 
    ```bash
-   npx tsx --watch src/utils/build-icons.ts
+   npx tsx --watch src/utils/buildIcons.ts
    ```
 
 ---

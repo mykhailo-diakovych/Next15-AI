@@ -1,4 +1,4 @@
-import { cn } from "@utils/tailwind-merge";
+import { cn } from "@/utils/tailwindMerge";
 
 function Skeleton({
    className,
