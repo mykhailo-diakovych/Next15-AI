@@ -16,8 +16,8 @@ import {
 import { ModelSwitcher } from "@components/general/sidebar/ModelSwitcher";
 import { Separator } from "@components/ui/separator";
 import { NewThreadButton } from "@components/general/sidebar/NewThreadButton";
-import { HeaderLogo } from "@components/general/header-logo/HeaderLogo";
 import { Icon } from "@components/shared/icon";
+import { Logo } from "@components/general/logo/HeaderLogo";
 
 // This is sample data.
 const data = {
@@ -60,7 +60,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
    return (
       <Sidebar collapsible="icon" {...props}>
          <SidebarHeader className="gap-0 p-0">
-            <HeaderLogo />
+            <Logo />
 
             <ModelSwitcher models={data.models} />
          </SidebarHeader>
@@ -86,6 +86,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <SidebarMenuItem key={item.title}>
                      <SidebarMenuButton asChild size="lg">
                         <Link href={item.url}>
+                           <Icon name={item.icon} />
                            <span>{item.title}</span>
                         </Link>
                      </SidebarMenuButton>
