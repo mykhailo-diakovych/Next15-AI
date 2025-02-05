@@ -1,18 +1,18 @@
 import { create } from "zustand";
 
-import { Message } from "@/app/(features)/projects/[project-id]/interfaces/message";
+import { IMessage } from "@/app/(features)/projects/[project-id]/interfaces/message";
 
 interface State {
    conversationId: string | null;
    title: string | null;
-   messages: Message[] | null;
+   messages: IMessage[] | null;
    files: string[] | null;
 }
 
 interface Action {
    updateConversationId: (id: State["conversationId"]) => void;
    updateTitle: (title: State["title"]) => void;
-   updateMessages: (message: Message[]) => void;
+   updateMessages: (message: IMessage[]) => void;
    updateFiles: (files: string[]) => void;
 }
 

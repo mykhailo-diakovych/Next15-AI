@@ -1,10 +1,10 @@
-export interface MessageBody {
+export interface IMessageBody {
    role: string;
    content: string;
 }
 
-export interface Message {
+export interface IMessage {
    id: string;
    messageDateTime: string;
-   body: MessageBody;
+   body: IMessageBody;
 }
