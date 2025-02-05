@@ -19,10 +19,10 @@ export default function RootLayout({
 }>) {
    return (
       <html lang="en">
-         <body className="">
+         <body>
             <SidebarProvider>
                <AppSidebar />
-               <main className="w-full flex flex-col">
+               <main className="flex w-full flex-col">
                   <AppHeader />
                   {children}
                </main>
