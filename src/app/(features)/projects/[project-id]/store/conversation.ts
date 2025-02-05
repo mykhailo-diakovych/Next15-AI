@@ -13,6 +13,7 @@ interface Action {
    updateConversationId: (id: State["conversationId"]) => void;
    updateTitle: (title: State["title"]) => void;
    updateMessages: (message: IMessage[]) => void;
+   addUserMessage: (message: IMessage) => void;
    updateFiles: (files: string[]) => void;
 }
 
@@ -24,5 +25,10 @@ export const useConversationStore = create<State & Action>((set) => ({
    updateConversationId: (id) => set(() => ({ conversationId: id })),
    updateTitle: (title) => set(() => ({ title: title })),
    updateMessages: (messages) => set(() => ({ messages: messages })),
+   addUserMessage: (message) =>
+      set((state) => ({
+         messages: state.messages ? [...state.messages, message] : [message],
+      })),
+
    updateFiles: (files) => set(() => ({ files: files })),
 }));

@@ -21,18 +21,16 @@ export const Prompt = () => {
 
    const prompt = usePromptStore((state) => state.prompt);
    const updatePrompt = usePromptStore((state) => state.updatePrompt);
-   const updateMessages = useConversationStore((state) => state.updateMessages);
+   const addUserMessage = useConversationStore((state) => state.addUserMessage);
 
-   const { askQuestion, isLoading, error } = useAsk();
+   const { askQuestion } = useAsk();
 
    const handleAsk = async (prompt: string) => {
-      updateMessages([
-         {
-            id: "",
-            messageDateTime: "",
-            body: { content: prompt, role: "user" },
-         },
-      ]);
+      addUserMessage({
+         id: "",
+         messageDateTime: "",
+         body: { content: prompt, role: "user" },
+      });
       await askQuestion({
          question: prompt,
       });

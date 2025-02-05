@@ -19,9 +19,14 @@ const AdminMessage = ({ message }: IMessageProps) => {
             <div className="flex w-full items-center justify-between gap-4">
                <span>Results</span>
 
-               <div className="flex items-center gap-2">
-                  <Icon name="magic-wand" className="h-5 w-5" />
-                  <Button variant="outline">Show steps</Button>
+               <div className="flex items-center gap-3">
+                  <Icon
+                     name="magic-wand"
+                     className="h-6 w-6 flex-shrink-0 cursor-pointer"
+                  />
+                  <Button variant="ghost" className="font-extralight">
+                     Show steps
+                  </Button>
                </div>
             </div>
             <div className="text-v-grey-900 flex text-base font-normal">
