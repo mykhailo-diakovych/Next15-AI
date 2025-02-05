@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Icon } from "@components/shared/icon";
 import { Button } from "@components/ui/button";
 import {
@@ -9,9 +11,16 @@ import {
    DropdownMenuTrigger,
 } from "@components/ui/dropdown-menu";
 import { Input } from "@components/ui/input";
-import Link from "next/link";
 
-export const Toolbar = () => {
+import { usePromptStore } from "@/app/(features)/projects/[project-id]/store/prompt";
+
+interface IToolbarProps {
+   onSubmit: (inputText: string) => void;
+}
+
+export const Toolbar = ({ onSubmit }: IToolbarProps) => {
+   const prompt = usePromptStore((state) => state.prompt);
+
    return (
       <div className="flex items-center justify-between">
          <DropdownMenu>
@@ -51,7 +60,11 @@ export const Toolbar = () => {
                </div>
                <Input type="file" className="hidden" />
             </label>
-            <Button className="bg-v-green-500 hover:bg-v-green-500/80 size-10 rounded-md p-0 shadow-none">
+            <Button
+               onClick={() => onSubmit(prompt)}
+               disabled={!prompt.trim()}
+               className="bg-v-green-500 hover:bg-v-green-500/80 size-10 rounded-md p-0 shadow-none"
+            >
                <Icon name="send" className="size-5" />
             </Button>
          </div>

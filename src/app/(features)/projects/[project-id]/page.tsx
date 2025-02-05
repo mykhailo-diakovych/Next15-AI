@@ -1,29 +1,27 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Prompt } from "@/app/(features)/projects/[project-id]/components/prompt/Prompt";
 
 import { useAsk } from "@/app/(features)/projects/[project-id]/hooks/useAsk";
+import { useConversationStore } from "@/app/(features)/projects/[project-id]/store/conversation";
 
 const ProjectPage = () => {
    const { askQuestion, isLoading, error } = useAsk();
 
-   const handleAsk = async () => {
-      const response = await askQuestion({
-         question: "How are you?",
+   const state = useConversationStore((state) => state);
+   console.log(state);
+
+   const handleAsk = async (prompt: string) => {
+      await askQuestion({
+         question: prompt,
       });
-
-      console.log(response);
    };
-
-   useEffect(() => {
-      handleAsk();
-   }, []);
 
    return (
       <div className="flex flex-1 items-center justify-center px-5">
-         <Prompt />
+         <Prompt handleAsk={handleAsk} />
       </div>
    );
 };

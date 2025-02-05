@@ -1,24 +1,34 @@
 import { useState } from "react";
 
-import { AskRequest, AskResponse } from "@/app/api/(features)/ask/interfaces";
+import { usePromptStore } from "@/app/(features)/projects/[project-id]/store/prompt";
+import { useConversationStore } from "@/app/(features)/projects/[project-id]/store/conversation";
+
+import { AskRequest } from "@/app/api/(features)/ask/interfaces";
+import { ConversationResponse } from "@/app/(features)/projects/[project-id]/interfaces/conversation";
 
 export function useAsk() {
    const [isLoading, setIsLoading] = useState(false);
    const [error, setError] = useState<string | null>(null);
 
+   const conversationId = useConversationStore.getState().conversationId;
+   console.log(conversationId);
+
    const askQuestion = async (
       request: AskRequest,
-   ): Promise<AskResponse | null> => {
+   ): Promise<ConversationResponse | null> => {
       try {
          setIsLoading(true);
          setError(null);
+         usePromptStore.setState({ prompt: "" });
 
-         const response = await fetch("/api/ask", {
+         let response = await fetch("/api/ask", {
             method: "POST",
             headers: {
                "Content-Type": "application/json",
             },
-            body: JSON.stringify(request),
+            body: JSON.stringify(
+               conversationId ? { conversationId, ...request } : request,
+            ),
          });
 
          if (!response.ok) {
@@ -26,7 +36,23 @@ export function useAsk() {
             throw new Error(errorData.error || "Failed to get response");
          }
 
-         return await response.json();
+         const responseData: ConversationResponse = await response.json();
+
+         if (!conversationId) {
+            useConversationStore.setState({
+               conversationId: responseData.conversation.id,
+               title: responseData.conversation.title,
+            });
+         }
+
+         useConversationStore
+            .getState()
+            .updateMessages(responseData.conversation.messages ?? []);
+         useConversationStore
+            .getState()
+            .updateFiles(responseData.conversation.files ?? []);
+
+         return responseData;
       } catch (err) {
          setError(
             err instanceof Error ? err.message : "An unexpected error occurred",
