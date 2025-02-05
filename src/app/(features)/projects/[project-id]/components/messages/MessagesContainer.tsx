@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import { Message } from "@/app/(features)/projects/[project-id]/components/messages/Message";

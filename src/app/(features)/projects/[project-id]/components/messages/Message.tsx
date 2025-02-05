@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "@components/ui/button";
 import { Icon } from "@components/shared/icon";
 
-import { IMessage } from "@/app/(features)/projects/[project-id]/interfaces/message";
+import { IMessage } from "@features/projects/[project-id]/interfaces/message";
 
 interface IMessageProps {
    message: IMessage;

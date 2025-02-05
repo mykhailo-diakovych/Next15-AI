@@ -11,7 +11,6 @@ export function useAsk() {
    const [error, setError] = useState<string | null>(null);
 
    const conversationId = useConversationStore.getState().conversationId;
-   console.log(conversationId);
 
    const askQuestion = async (
       request: AskRequest,
@@ -45,12 +44,12 @@ export function useAsk() {
             });
          }
 
-         useConversationStore
-            .getState()
-            .updateMessages(responseData.conversation.messages ?? []);
-         useConversationStore
-            .getState()
-            .updateFiles(responseData.conversation.files ?? []);
+         const conversationStore = useConversationStore.getState();
+
+         conversationStore.updateMessages(
+            responseData.conversation.messages ?? [],
+         );
+         conversationStore.updateFiles(responseData.conversation.files ?? []);
 
          return responseData;
       } catch (err) {
