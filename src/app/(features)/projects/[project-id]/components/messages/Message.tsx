@@ -12,7 +12,7 @@ interface IMessageProps {
 const AdminMessage = ({ message }: IMessageProps) => {
    return (
       <div className="flex w-full justify-start gap-4">
-         <div className="flex size-8 flex-shrink-0 items-center justify-center rounded-[2px] border-[1px] border-gray-600 bg-white">
+         <div className="flex size-8 flex-shrink-0 items-center justify-center rounded-[2px] border-[1px] border-gray-400 bg-white">
             <Icon name="logo" className="h-4 w-4" />
          </div>
          <div className="flex w-full flex-col gap-4">
