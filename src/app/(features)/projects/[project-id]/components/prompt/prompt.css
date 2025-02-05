@@ -1,0 +1,26 @@
+.grounded-radiants {
+   position: relative;
+   border: 1px solid transparent;
+   border-radius: 5px;
+   background-clip: padding-box;
+   background: #fafafa;
+
+   &::after {
+      position: absolute;
+      inset: -2px;
+      background: rgba(208, 208, 211, 1);
+      content: "";
+      z-index: -1;
+      border-radius: 6px;
+   }
+}
+
+.grounded-radiants-focused {
+   &::after {
+      background: linear-gradient(
+         0deg,
+         rgba(0, 230, 96, 1) 0%,
+         rgba(24, 235, 189, 1) 100%
+      );
+   }
+}
