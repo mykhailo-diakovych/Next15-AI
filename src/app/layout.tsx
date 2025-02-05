@@ -22,7 +22,7 @@ export default function RootLayout({
          <body className="">
             <SidebarProvider>
                <AppSidebar />
-               <main className="w-full">
+               <main className="w-full flex flex-col">
                   <AppHeader />
                   {children}
                </main>

@@ -11,8 +11,10 @@ export default {
     extend: {
       colors: {
         'v-grey-200': 'hsl(var(--color-grey-200) / <alpha-value>)',
+        'v-grey-300': 'hsl(var(--color-grey-300) / <alpha-value>)',
         'v-grey-600': 'hsl(var(--color-grey-600) / <alpha-value>)',
         'v-grey-800': 'hsl(var(--color-grey-800) / <alpha-value>)',
+        'v-green-500': 'hsl(var(--color-green-500) / <alpha-value>)',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
