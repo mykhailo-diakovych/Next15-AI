@@ -1,10 +1,8 @@
 import { NextRequest } from "next/server";
 
-import { askRequestSchema } from "@/app/api/features/ask/validators";
+import { askRequestSchema } from "src/app/api/(features)/ask/validators";
 
-import { AskRequest } from "@/app/api/features/ask/interfaces";
-
-import { env } from "@utils/env";
+import { AskRequest } from "src/app/api/(features)/ask/interfaces";
 
 async function validateRequest(req: NextRequest) {
    const body = await req.json();
@@ -18,8 +16,8 @@ async function validateRequest(req: NextRequest) {
 
 async function fetchVoltAPI(data: AskRequest) {
    const url = data.conversationId
-      ? `${env.VOLTQUANT_API_URL}?conversationId=${data.conversationId}`
-      : env.VOLTQUANT_API_URL;
+      ? `${process.env.VOLTQUANT_API_URL}?conversationId=${data.conversationId}`
+      : process.env.VOLTQUANT_API_URL;
 
    try {
       const response = await fetch(url, {

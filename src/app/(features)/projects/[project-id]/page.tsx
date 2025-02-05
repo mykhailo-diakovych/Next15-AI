@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 
-import { useAsk } from "@/app/projects/[project-id]/hooks/useAsk";
+import { useAsk } from "@/app/(features)/projects/[project-id]/hooks/useAsk";
 
 const Page = () => {
    const { askQuestion, isLoading, error } = useAsk();

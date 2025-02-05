@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { AskRequest, AskResponse } from "@/app/api/features/ask/interfaces";
+import { AskRequest, AskResponse } from "@/app/api/(features)/ask/interfaces";
 
 export function useAsk() {
    const [isLoading, setIsLoading] = useState(false);
