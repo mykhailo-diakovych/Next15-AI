@@ -2,6 +2,7 @@ import React from "react";
 
 import { Button } from "@components/ui/button";
 import { Icon } from "@components/shared/icon";
+import { MarkdownRenderer } from "@features/projects/[project-id]/components/messages/MarkdownRenderer";
 
 import { IMessage } from "@features/projects/[project-id]/interfaces/message";
 
@@ -30,7 +31,7 @@ const AdminMessage = ({ message }: IMessageProps) => {
                </div>
             </div>
             <div className="text-v-grey-900 flex text-base font-normal">
-               {message.body.content}
+               <MarkdownRenderer content={message.body.content} />
             </div>
          </div>
       </div>
