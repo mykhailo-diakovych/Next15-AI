@@ -1,0 +1,28 @@
+.inverted-borders-container {
+   box-shadow: 5px 5px 0 5px hsl(var(--sidebar-background));
+
+   &::before, &::after {
+      content: "";
+      position: absolute;
+      background: #00e660;
+      width: 20px;
+      height: 20px;
+      border-bottom-right-radius: 0.5rem;
+   }
+
+   &::before {
+      content: "";
+      bottom: 0;
+      left: -21px;
+      background: hsl(var(--card));
+      box-shadow: 1px 1px 1px 0 #0000001a, 0 1px 0 -1px #0000001a, 3px 3px 0 0 hsl(var(--sidebar-background));
+   }
+
+   &::after {
+      content: "";
+      top: -21px;
+      right: 0;
+      background: hsl(var(--card));
+      box-shadow: 1px 1px 1px 0 #0000001a, 0 1px 0 -1px #0000001a, 3px 3px 0 0 hsl(var(--sidebar-background));
+   }
+}

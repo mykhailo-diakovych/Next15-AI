@@ -2,9 +2,8 @@
 
 import React from "react";
 
-import { Message } from "@/app/(features)/projects/[project-id]/components/messages/Message";
-
-import { useConversationStore } from "@/app/(features)/projects/[project-id]/store/conversation";
+import { Message } from "@features/projects/[project-id]/components/messages/Message";
+import { useConversationStore } from "@features/projects/[project-id]/store/conversation";
 
 export const MessagesContainer = () => {
    const messages = useConversationStore((state) => state.messages);

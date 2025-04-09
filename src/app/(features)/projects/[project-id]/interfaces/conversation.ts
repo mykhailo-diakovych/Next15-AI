@@ -1,15 +1,13 @@
-import { IMessage } from "@/app/(features)/projects/[project-id]/interfaces/message";
-
-export interface ConversationResponse {
-   success: boolean;
-   conversation: Conversation;
-}
+import {
+   IFile,
+   IMessage,
+} from "@features/projects/[project-id]/interfaces/message";
 
 export interface Conversation {
    id: string;
    createdDate: string;
    updatedDate: string;
    title: string;
-   files: string[];
+   files: IFile[];
    messages: IMessage[];
 }

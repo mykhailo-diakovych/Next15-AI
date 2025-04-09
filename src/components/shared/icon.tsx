@@ -1,5 +1,4 @@
 import { type SVGProps } from "react";
-import spriteHref from "public/sprite.svg";
 
 export function Icon({
    name,
@@ -9,7 +8,7 @@ export function Icon({
 }) {
    return (
       <svg {...props}>
-         <use href={`${spriteHref.src}#${name}`} />
+         <use href={`/sprite.svg#${name}`} />
       </svg>
    );
 }

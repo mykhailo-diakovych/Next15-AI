@@ -1,52 +1,121 @@
 import React from "react";
+import { Copy, Volume2, CircleStop } from "lucide-react";
+import { useCopyToClipboard } from "@uidotdev/usehooks";
 
-import { Button } from "@components/ui/button";
-import { Icon } from "@components/shared/icon";
 import { MarkdownRenderer } from "@features/projects/[project-id]/components/messages/MarkdownRenderer";
-
+import { MessageFileTile } from "@features/projects/[project-id]/components/messages/MessageFileTile";
+import { FeedbackButtons } from "@features/projects/[project-id]/components/messages/FeedbackButtons";
+import { useConversationStore } from "@features/projects/[project-id]/store/conversation";
+import { useTextToSpeech } from "@features/projects/[project-id]/hooks/useTextToSpeech";
 import { IMessage } from "@features/projects/[project-id]/interfaces/message";
+import { useVoiceStore } from "@features/projects/[project-id]/store/voice";
+
+import { Icon } from "@components/shared/icon";
+import { SmallLoader } from "@components/shared/loader/SmallLoader";
+import { Button } from "@components/ui/button";
+
+import { useToast } from "@hooks/use-toast";
+
+import "./message.css";
 
 interface IMessageProps {
    message: IMessage;
 }
 
 const AdminMessage = ({ message }: IMessageProps) => {
-   return (
-      <div className="flex w-full justify-start gap-4">
-         <div className="flex size-8 flex-shrink-0 items-center justify-center rounded-[2px] border-[1px] border-gray-400 bg-white">
-            <Icon name="logo" className="h-4 w-4" />
-         </div>
-         <div className="flex w-full flex-col gap-4">
-            <div className="flex w-full items-center justify-between gap-4">
-               <span>Results</span>
+   const isLoading = useConversationStore((state) => state.isLoading);
+   const isLastMessage = useConversationStore((state) => {
+      const messages = state.messages ?? [];
+      const lastAdminMessage = [...messages]
+         .reverse()
+         .find((msg) => msg.body.role === "assistant");
+      return lastAdminMessage?.id === message.id;
+   });
 
-               <div className="flex items-center gap-3">
-                  <Icon
-                     name="magic-wand"
-                     className="h-6 w-6 flex-shrink-0 cursor-pointer"
-                  />
-                  <Button variant="ghost" className="font-extralight">
-                     Show steps
-                  </Button>
-               </div>
-            </div>
-            <div className="text-v-grey-900 flex text-base font-normal">
-               <MarkdownRenderer content={message.body.content} />
-            </div>
+   const setIsVoiceOpened = useVoiceStore((state) => state.setIsVoiceOpened);
+
+   const [, copyToClipboard] = useCopyToClipboard();
+
+   const { speak, stopSpeaking, isSpeaking } = useTextToSpeech();
+
+   const { toast } = useToast();
+
+   const handleCopy = async () => {
+      await copyToClipboard(message.body.content);
+      toast({
+         title: "Copied to clipboard!",
+      });
+   };
+
+   const handleSpeak = () => {
+      setIsVoiceOpened(true);
+      speak(message.body.content);
+   };
+
+   return (
+      <div className="relative flex w-full justify-start gap-4">
+         <div className="flex size-12 shrink-0 items-center justify-center rounded-md bg-white-smoke">
+            {isLoading && message.body.content.length === 0 ? (
+               <SmallLoader className="scale-[1.75]" />
+            ) : (
+               <Icon name="logo" className="size-6" />
+            )}
          </div>
+         {message.body.content.length > 0 && (
+            <div className="flex w-full max-w-[700px] flex-col gap-4">
+               <div className="flex pt-3">
+                  <MarkdownRenderer content={message.body.content} />
+               </div>
+               {(!isLoading || !isLastMessage) &&
+                  message.body.content.length !== 0 && (
+                     <div className="flex items-center gap-1">
+                        <Button
+                           onClick={handleCopy}
+                           className="flex h-7 w-7 items-center justify-center p-1"
+                           variant="ghost"
+                        >
+                           <Copy />
+                        </Button>
+                        <FeedbackButtons assistantMessageId={message.id} />
+                        {isSpeaking ? (
+                           <Button
+                              onClick={() => stopSpeaking()}
+                              className="flex h-7 w-7 items-center justify-center p-1"
+                              variant="ghost"
+                           >
+                              <CircleStop />
+                           </Button>
+                        ) : (
+                           <Button
+                              onClick={handleSpeak}
+                              className="flex h-7 w-7 items-center justify-center p-1"
+                              variant="ghost"
+                           >
+                              <Volume2 />
+                           </Button>
+                        )}
+                     </div>
+                  )}
+               {message?.usedFiles && (
+                  <div className="no-scrollbar flex w-full items-center gap-2 overflow-hidden overflow-x-auto">
+                     {message.usedFiles.map((file) => (
+                        <MessageFileTile key={file.id} file={file} />
+                     ))}
+                  </div>
+               )}
+            </div>
+         )}
       </div>
    );
 };
 
 const UserMessage = ({ message }: IMessageProps) => {
    return (
-      <div className="flex w-full justify-start gap-4">
-         <div className="flex size-8 flex-shrink-0 items-center justify-center rounded-[2px] bg-gradient-to-r from-v-grey-800 to-v-grey-600/70">
-            <span className="text-[12px] font-medium leading-[20px] tracking-[-0.01em] text-white">
-               VQ
-            </span>
+      <div className="relative flex w-full justify-start gap-4">
+         <div className="flex size-12 shrink-0 items-center justify-center rounded-md bg-charcoal">
+            <span className="text-gradient text-xl">VQ</span>
          </div>
-         <div className="text-v-grey-900 flex text-base font-normal">
+         <div className="flex max-w-[700px] pt-3 text-base font-normal text-black-bean/90">
             {message.body.content}
          </div>
       </div>

@@ -1,0 +1,99 @@
+.voice-decor {
+   clip-path: polygon(20% 0, 80% 0%, 100% 100%, 0% 100%);
+}
+
+.malachite-blob {
+   position: absolute;
+   width: 25rem;
+   height: 40rem;
+   top: -17.5rem;
+   left: -12rem;
+   background: #22FC55;
+   filter: blur(5rem);
+   border-radius: 42% 56% 72% 54% / 63% 48% 59% 42%;
+   transform-origin: center center;
+   opacity: 0.95;
+
+   &.animate {
+      animation: morphMalachite 4s ease-in-out infinite alternate;
+   }
+}
+
+.turquoise-blob {
+   position: absolute;
+   width: 30rem;
+   height: 30rem;
+   bottom: -10.5rem;
+   right: -22.5rem;
+   background: #14E2DC;
+   filter: blur(5rem);
+   border-radius: 63% 37% 54% 46% / 55% 72% 28% 45%;
+   transform-origin: center center;
+   opacity: 0.95;
+
+   &.animate {
+      animation: morphTurquoise 5s ease-in-out infinite alternate;
+   }
+}
+
+@keyframes morphMalachite {
+   0% {
+      border-radius: 40% 60% 70% 50% / 65% 45% 60% 40%;
+      transform: rotate(0deg) scale(1);
+      opacity: 0.9;
+   }
+   20% {
+      border-radius: 60% 40% 50% 70% / 50% 65% 35% 55%;
+      transform: rotate(10deg) scale(1.1);
+      opacity: 0.85;
+   }
+   40% {
+      border-radius: 45% 55% 65% 35% / 60% 40% 50% 50%;
+      transform: rotate(-10deg) scale(0.95);
+      opacity: 0.8;
+   }
+   60% {
+      border-radius: 50% 50% 40% 60% / 55% 50% 45% 50%;
+      transform: rotate(15deg) scale(1.05);
+      opacity: 0.9;
+   }
+   80% {
+      border-radius: 55% 45% 60% 40% / 40% 60% 50% 50%;
+      transform: rotate(-5deg) scale(1);
+      opacity: 0.95;
+   }
+   100% {
+      border-radius: 42% 56% 72% 54% / 63% 48% 59% 42%;
+      transform: rotate(0deg) scale(1);
+      opacity: 1;
+   }
+}
+
+@keyframes morphTurquoise {
+   0% {
+      border-radius: 60% 40% 55% 45% / 50% 70% 30% 50%;
+      transform: rotate(0deg) scale(1);
+      opacity: 0.85;
+   }
+   25% {
+      border-radius: 50% 50% 40% 60% / 55% 50% 45% 50%;
+      transform: rotate(-15deg) scale(1.1);
+      opacity: 0.9;
+   }
+   50% {
+      border-radius: 45% 55% 65% 35% / 60% 40% 50% 50%;
+      transform: rotate(10deg) scale(0.9);
+      opacity: 0.8;
+   }
+   75% {
+      border-radius: 55% 45% 50% 50% / 40% 60% 50% 50%;
+      transform: rotate(-5deg) scale(1.05);
+      opacity: 0.95;
+   }
+   100% {
+      border-radius: 63% 37% 54% 46% / 55% 72% 28% 45%;
+      transform: rotate(0deg) scale(1);
+      opacity: 1;
+   }
+}
+

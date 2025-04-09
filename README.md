@@ -1,6 +1,6 @@
 # VoltQuant UI
-The application leverages AI to allow users to ask questions about documents stored in blob storage. Built with Next.js, Radix UI, Tailwind CSS, and TypeScript, VoltQuant UI offers a suite of reusable and customizable UI components, ensuring a seamless and intuitive experience for users when interacting with document-based queries.
 
+The application leverages AI to allow users to ask questions about documents stored in blob storage. Built with Next.js, Radix UI, Tailwind CSS, and TypeScript, VoltQuant UI offers a suite of reusable and customizable UI components, ensuring a seamless and intuitive experience for users when interacting with document-based queries.
 
 ## Project Structure
 
@@ -49,7 +49,6 @@ The application leverages AI to allow users to ask questions about documents sto
 
 - Next.js Configuration: Custom configuration for Next.js, including server-side settings, file handling, and optimizations for the project. It helps streamline the development and build process with features like TypeScript support and performance improvements.
 
-
 ## How to add new SVG icons?
 
 To manage SVG icons and generate a sprite file, follow these steps:
@@ -90,4 +89,3 @@ The following scripts are available in the `package.json` for development and pr
 - `npm run build`: Builds the application for production deployment.
 - `npm run start`: Starts the production server after building the application.
 - `npm run lint`: Runs ESLint to check for code style issues and potential bugs.
-
